@@ -17,4 +17,5 @@
 		   (else (right-most (bst-rs bst)))))
 (define (left-most bst)
 	(cond ((and (empty-bst? (bst-rs bst)) (empty-bst? (bst-ls bst))) (bst-v bst))
-		   (else (left-most (bst-ls bst)))))		   				    
+		   (else (left-most (bst-ls bst)))))
+		   		   				    
