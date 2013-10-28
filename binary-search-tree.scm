@@ -18,4 +18,6 @@
 (define (left-most bst)
 	(cond ((and (empty-bst? (bst-rs bst)) (empty-bst? (bst-ls bst))) (bst-v bst))
 		   (else (left-most (bst-ls bst)))))
-		   		   				    
+(define (inserttree bst lst)
+	(cond ((null? lst) bst)
+		(else (inserttree (insert-bst bst (car lst)) (cdr lst))))) 		   				    
