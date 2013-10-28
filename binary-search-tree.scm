@@ -18,7 +18,7 @@
 		(else (right-most (bst-rs bst)))))
 (define (left-most bst)
 	(cond ((empty-bst? bst) (make-empty-bst))
-		((empty-bst? (bst-ls bst))  bst)
+		((empty-bst? (bst-ls bst)) (bst-v  bst))
 		(else (left-most (bst-ls bst)))))
 
 (define (inserttree bst lst)
@@ -30,4 +30,7 @@
 		((= val (bst-v bst))
 			        (cond ((leaf-bst? bst) (make-empty-bst))
 			        	((empty-bst? (bst-rs bst)) (bst-ls bst))
-			        	(else (make-bst (bst-v (left-most (bst-rs bst))) (bst-ls bst) (delete (bst-rs bst) (bst-v (left-most (bst-rs bst))))))))))
+			        	(else (make-bst  (left-most (bst-rs bst)) (bst-ls bst) (delete (bst-rs bst) (left-most (bst-rs bst)))))))))
+(define (sort bst)
+	(cond ((empty-bst? bst) '())
+		(else (cons (left-most bst) (sort (delete bst (left-most bst)))))))
