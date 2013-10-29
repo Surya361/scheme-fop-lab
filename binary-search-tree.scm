@@ -34,3 +34,16 @@
 (define (sort bst)
 	(cond ((empty-bst? bst) '())
 		(else (cons (left-most bst) (sort (delete bst (left-most bst)))))))
+(define (sort-1 bst)
+	(cond ((empty-bst? bst) '())
+		(else  (cons (bst-v bst) (sort-1 (bst-ls bst))) (cons (bst-v bst)(sort-1 (bst-rs bst))))))
+
+(define (valid-bst? bst)
+	(cond ((leaf-bst? bst) #t)
+		((and (empty-bst? (bst-ls bst)) (> (bst-v bst) (bst-v (bst-rs bst))) ) #f)
+		((and (empty-bst? (bst-rs bst)) (< (bst-v bst) (bst-v (bst-ls bst))) ) #f)
+		((empty-bst? (bst-ls bst)) (valid-bst? (bst-rs bst)))
+		((empty-bst? (bst-rs bst)) (valid-bst? (bst-ls bst)))
+		((or (> (bst-v bst) (bst-v (bst-rs bst) )) (< (bst-v bst) (bst-v (bst-ls bst)))) #f)
+		(else (and (valid-bst? (bst-rs bst)) (valid-bst? (bst-ls bst))))))
+
