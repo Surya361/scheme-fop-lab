@@ -13,7 +13,7 @@
 (define (desendent-person-families person family)
 	(cond ((empty-family? family) '())
 		((equal? (get-father family) person) (list (get-son1-family family) (get-son2-family family)))
-		(else (append (desendent-person  person (get-son1-family family)) (desendent-person person (get-son2-family family))))))
+		(else (append (desendent-person-families  person (get-son1-family family)) (desendent-person-families person (get-son2-family family))))))
 (define (members family)
     (cond ((null? family) '())
           ((not (list? family)) (list family))
